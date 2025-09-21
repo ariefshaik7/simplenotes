@@ -260,3 +260,11 @@ simplenotes/
 │   └── package.json
 └── README.md
 ```
+
+---
+![simplenotes](/assets/images/login.png)
+
+---
+![simplenotes](/assets/images/home.png)
+
+---
