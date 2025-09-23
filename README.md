@@ -65,7 +65,7 @@ This application uses a classic three-tier architecture:
 ### Run via Docker 
     
     
-    docker compose up --build;
+    docker compose up --build
 
 
 
