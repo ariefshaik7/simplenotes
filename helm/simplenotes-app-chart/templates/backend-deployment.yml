@@ -22,12 +22,12 @@ spec:
         ports:
         - containerPort: 5001
         env:
-        - name: DATABASE_URI
-          value: "postgresql://user:$(POSTGRES_PASSWORD)@postgres-service/simplenotes"
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-secret
               key: POSTGRES_PASSWORD
+        - name: DATABASE_URI
+          value: "postgresql://user:$(POSTGRES_PASSWORD)@postgres-service/simplenotes"
         - name: SECRET_KEY
           value: "a-very-secure-secret-key-that-you-must-change"
