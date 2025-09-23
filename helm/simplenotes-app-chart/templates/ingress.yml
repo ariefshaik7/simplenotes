@@ -3,26 +3,24 @@ kind: Ingress
 metadata:
   name: simplenotes-ingress
   annotations:
-    # This rewrite rule is still needed for the backend API proxy to work correctly
+    # needed for regex-based path + rewrite
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  # --- START: This is the critical fix ---
-  # This field explicitly tells the NGINX Ingress Controller to manage this Ingress
   ingressClassName: nginx
-  # --- END: This is the critical fix ---
   rules:
   - host: {{ .Values.ingress.host | default "simplenotes.com" }}
     http:
       paths:
-      # Rule for Backend API
+      # Regex rule for Backend API — use ImplementationSpecific so the controller handles the matching
       - path: /api(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: simplenotes-backend
             port:
               number: 5001
-      # Rule for Frontend Application
+      # Frontend catch-all
       - path: /
         pathType: Prefix
         backend:
@@ -30,3 +28,8 @@ spec:
             name: frontend-service
             port:
               number: 80
+# Optional: add TLS here for production
+# tls:
+# - hosts:
+#   - example.com
+#   secretName: simplenotes-tls
