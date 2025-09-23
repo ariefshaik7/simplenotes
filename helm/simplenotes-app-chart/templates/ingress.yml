@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: simplenotes.com
+  - host: {{ .Values.ingress.host | default "simplenotes.com" }}
     http:
       paths:
       - path: /api(/|$)(.*)

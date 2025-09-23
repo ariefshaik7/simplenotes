@@ -1,7 +1,7 @@
 frontend:
   image:
     repository: ariefshaik007/simplenotes-frontend
-    tag: "17954771950"
+    tag: "17948627399"
   replicaCount: 1
   service:
     type: ClusterIP 
@@ -18,3 +18,6 @@ backend:
 database:
   password: bXlzZWNyZXRwYXNzd29yZA==
 
+ingress:
+  enabled: true
+  host: simplenotes.com
