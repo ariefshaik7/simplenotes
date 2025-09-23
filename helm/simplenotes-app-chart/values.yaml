@@ -16,5 +16,5 @@ backend:
     port: 5001
 
 database:
-  password: cGFzc3dvcmQK
+  password: bXlzZWNyZXRwYXNzd29yZA==
 
