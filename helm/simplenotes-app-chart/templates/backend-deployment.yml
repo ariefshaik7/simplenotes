@@ -12,6 +12,10 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:
+      - name: check-postgres-ready
+        image: busybox
+        command: ['sh', '-c', 'until nc -z postgres-service 5432; do echo "waiting for postgres db..."; sleep 2; done;']
       containers:
       - name: backend
         image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
