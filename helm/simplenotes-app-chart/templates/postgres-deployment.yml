@@ -12,10 +12,10 @@ spec:
       labels:
         app: postgres
     spec:
-      securityContext: 
-        fsGroup: 999
-        runAsUser: 999
-        runAsGroup: 999
+      initContainers:
+      - name: check-postgres-ready
+        image: busybox
+        command: ['sh', '-c', 'until nc -z postgres-service 5432; do echo "waiting for postgres db..."; sleep 2; done;']
       containers:
       - name: postgres
         image: postgres:16
@@ -34,6 +34,7 @@ spec:
         volumeMounts:
         - name: postgres-storage
           mountPath: /var/lib/postgresql/data
+          subPath: postgres
       volumes:
       - name: postgres-storage
         persistentVolumeClaim:
