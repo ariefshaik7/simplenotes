@@ -10,14 +10,11 @@ frontend:
 backend:
   image:
     repository: ariefshaik007/simplenotes-backend
-    tag: latest
+    tag: 'latest'
   replicaCount: 1
   service:
     port: 5001
 
 database:
-  password: YOUR_BASE64_ENCODED_PASSWORD 
+  password: cGFzc3dvcmQK
 
-ingress:
-  enabled: true
-  host: simplenotes.yourdomain.com
