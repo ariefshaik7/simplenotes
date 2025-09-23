@@ -18,6 +18,3 @@ backend:
 database:
   password: bXlzZWNyZXRwYXNzd29yZA==
 
-ingress:
-  enabled: true
-  host: simplenotes.com
