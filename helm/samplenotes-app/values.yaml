@@ -1,0 +1,23 @@
+frontend:
+  image:
+    repository: ariefshaik007/simplenotes-frontend
+    tag: latest
+  replicaCount: 1
+  service:
+    type: ClusterIP 
+    port: 80
+
+backend:
+  image:
+    repository: ariefshaik007/simplenotes-backend
+    tag: latest
+  replicaCount: 1
+  service:
+    port: 5001
+
+database:
+  password: YOUR_BASE64_ENCODED_PASSWORD 
+
+ingress:
+  enabled: true
+  host: simplenotes.yourdomain.com
