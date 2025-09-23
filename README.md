@@ -60,6 +60,17 @@ This application uses a classic three-tier architecture:
 ```
 
 ---
+## Running the Application
+    
+### Run via Docker 
+    
+    
+    docker compose up --build;
+
+
+
+
+---
 
 ## Local Setup Instructions
 
@@ -238,28 +249,7 @@ The backend server provides the following RESTful API endpoints. All `/api/notes
 | `PUT` | `/api/notes/<int:id>` | Update a note's title and/or content. |
 | `DELETE` | `/api/notes/<int:id>` | Delete a note by its ID. |
 
----
 
-## Project Structure
-
-```bash
-simplenotes/
-├── backend/
-│   ├── venv/
-│   └── app.py              # Main Flask application file
-├── frontend/
-│   ├── node_modules/
-│   ├── public/             # Contains index.html and manifest.json
-│   ├── src/
-│   │   ├── components/     # All React components
-│   │   │   ├── plugins/    # Lexical helper plugins
-│   │   │   └── ...
-│   │   ├── App.js          # Main component with routing
-│   │   ├── api.js          # Central Axios configuration
-│   │   └── index.css       # Global styles
-│   └── package.json
-└── README.md
-```
 
 ---
 ![simplenotes](/assets/images/login.png)
