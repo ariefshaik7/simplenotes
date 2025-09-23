@@ -3,13 +3,21 @@ kind: Ingress
 metadata:
   name: simplenotes-ingress
   annotations:
-    # This annotation is important for the NGINX Ingress Controller
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io.ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: simplenotes.com
+  - host: {{ .Values.ingress.host | default "simplenotes.com" }}
     http:
       paths:
+      - path: /api(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: simplenotes-backend
+            port:
+              number: 5001
+
       - path: /
         pathType: Prefix
         backend:

@@ -2,16 +2,16 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: simplenotes-backend-monitor
-  namespace: monitoring # Deploys this resource into the monitoring namespace
+  namespace: monitoring 
   labels:
-    release: prometheus # Ensures the Prometheus instance discovers this monitor
+    release: prometheus 
 spec:
   selector:
     matchLabels:
-      app: backend # Selects the backend service
+      app: backend 
   namespaceSelector:
     matchNames:
-      - app # Specifies that the service is in the 'app' namespace
+      - app
   endpoints:
   - port: http
     interval: 15s
