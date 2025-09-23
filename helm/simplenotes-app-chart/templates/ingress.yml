@@ -3,13 +3,18 @@ kind: Ingress
 metadata:
   name: simplenotes-ingress
   annotations:
-    kubernetes.io.ingress.class: "nginx"
+    # This rewrite rule is still needed for the backend API proxy to work correctly
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  # --- START: This is the critical fix ---
+  # This field explicitly tells the NGINX Ingress Controller to manage this Ingress
+  ingressClassName: nginx
+  # --- END: This is the critical fix ---
   rules:
   - host: {{ .Values.ingress.host | default "simplenotes.com" }}
     http:
       paths:
+      # Rule for Backend API
       - path: /api(/|$)(.*)
         pathType: Prefix
         backend:
@@ -17,7 +22,7 @@ spec:
             name: simplenotes-backend
             port:
               number: 5001
-
+      # Rule for Frontend Application
       - path: /
         pathType: Prefix
         backend:
