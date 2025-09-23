@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Bcrypt
+Flask-Cors
+PyJWT
+prometheus-flask-exporter
+psycopg2-binary
